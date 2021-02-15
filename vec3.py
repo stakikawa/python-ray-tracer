@@ -115,15 +115,13 @@ class Vec3:
     def length(self):
         return math.sqrt(self.length_squared())
 
-    def unit_vector(self):
-        return self / self.length()
+def unit_vector(v):
+    return v / v.length()
 
-    @staticmethod
-    def dot(a, b):
-        return a.e[0] * b.e[0] + a.e[1] * b.e[1] + a.e[2] * b.e[2]
+def dot(a, b):
+    return a.e[0] * b.e[0] + a.e[1] * b.e[1] + a.e[2] * b.e[2]
 
-    @staticmethod
-    def cross(a, b):
-        return Vec3(a.e[1] * b.e[2] - a.e[2] * b.e[1],
-                    a.e[2] * b.e[0] - a.e[0] * b.e[2],
-                    a.e[0] * b.e[1] - a.e[1] * b.e[0])
+def cross(a, b):
+    return Vec3(a.e[1] * b.e[2] - a.e[2] * b.e[1],
+                a.e[2] * b.e[0] - a.e[0] * b.e[2],
+                a.e[0] * b.e[1] - a.e[1] * b.e[0])

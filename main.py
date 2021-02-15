@@ -1,4 +1,5 @@
 from color import Color
+from color import write_color
 
 def main():
 
@@ -12,5 +13,5 @@ def main():
     for j in range(IMAGE_HEIGHT-1, -1, -1):
         for i in range(IMAGE_WIDTH):
             pixel_color = Color(float(i)/(IMAGE_WIDTH-1), float(j)/(IMAGE_HEIGHT-1), 0.25)
-            Color.write_color(pixel_color)
+            write_color(pixel_color)
 main()
