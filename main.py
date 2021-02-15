@@ -1,3 +1,5 @@
+from color import Color
+
 def main():
 
     # Image
@@ -9,14 +11,6 @@ def main():
 
     for j in range(IMAGE_HEIGHT-1, -1, -1):
         for i in range(IMAGE_WIDTH):
-            r = float(i) / (IMAGE_WIDTH - 1)
-            g = float(j) / (IMAGE_HEIGHT - 1)
-            b = 0.25
-
-            ir = int(255.999 * r)
-            ig = int(255.999 * g)
-            ib = int(255.999 * b)
-
-            print(ir, ' ', ig, ' ', ib, '\n')
-
+            pixel_color = Color(float(i)/(IMAGE_WIDTH-1), float(j)/(IMAGE_HEIGHT-1), 0.25)
+            Color.write_color(pixel_color)
 main()
