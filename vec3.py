@@ -15,7 +15,7 @@ class Vec3:
         return self.e[2]
 
     def __add__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             x = self.e[0] + other.e[0]
             y = self.e[1] + other.e[1]
             z = self.e[2] + other.e[2]
@@ -27,7 +27,7 @@ class Vec3:
             return Vec3(x, y, z)
 
     def __iadd__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             self.e[0] += other.e[0]
             self.e[1] += other.e[1]
             self.e[2] += other.e[2]
@@ -39,7 +39,7 @@ class Vec3:
             return self
 
     def __sub__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             x = self.e[0] - other.e[0]
             y = self.e[1] - other.e[1]
             z = self.e[2] - other.e[2]
@@ -51,7 +51,7 @@ class Vec3:
             return Vec3(x, y, z)
 
     def __isub__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             self.e[0] -= other.e[0]
             self.e[1] -= other.e[1]
             self.e[2] -= other.e[2]
@@ -63,7 +63,7 @@ class Vec3:
             return self
 
     def __mul__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             x = self.e[0] * other.e[0]
             y = self.e[1] * other.e[1]
             z = self.e[2] * other.e[2]
@@ -75,7 +75,7 @@ class Vec3:
             return Vec3(x, y, z)
 
     def __imul__(self, other):
-        if isinstance(other, type(self)):
+        if isinstance(other, Vec3):
             self.e[0] *= other.e[0]
             self.e[1] *= other.e[1]
             self.e[2] *= other.e[2]
