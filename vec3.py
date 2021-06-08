@@ -86,6 +86,9 @@ class Vec3:
             self.e[2] *= other
             return self
 
+    __radd__ = __add__
+    __rmul__ = __mul__
+
     def __truediv__(self, other):
         t = 1 / other
         x = self.e[0] * t
