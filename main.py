@@ -10,14 +10,14 @@ import math
 
 def hit_sphere(center, radius, r):
     oc = r.origin - center
-    a = dot(r.direction, r.direction)
-    b = 2.0 * dot(oc, r.direction)
-    c = dot(oc, oc) - radius * radius
-    discriminant = b * b - 4 * a * c
+    a = r.direction.length_squared()
+    half_b = dot(oc, r.direction)
+    c = oc.length_squared() - radius * radius
+    discriminant = half_b * half_b - a * c
     if discriminant < 0:
         return -1.0
     else:
-        return (-b - math.sqrt(discriminant)) / (2.0 * a)
+        return (-half_b - math.sqrt(discriminant)) / a
 
 
 def ray_color(r):
