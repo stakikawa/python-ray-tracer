@@ -3,7 +3,7 @@ from vec3 import dot
 
 class HitRecord:
 
-    def __init__(self, p, normal, t):
+    def __init__(self, p=None, normal=None, t=None):
         self.p = p
         self.normal = normal
         self.t = t
