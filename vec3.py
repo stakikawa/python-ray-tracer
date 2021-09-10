@@ -1,5 +1,6 @@
 import math
 
+
 class Vec3:
 
     def __init__(self, x=0, y=0, z=0):
@@ -118,11 +119,14 @@ class Vec3:
     def length(self):
         return math.sqrt(self.length_squared())
 
+
 def unit_vector(v):
     return v / v.length()
 
+
 def dot(a, b):
     return a.e[0] * b.e[0] + a.e[1] * b.e[1] + a.e[2] * b.e[2]
+
 
 def cross(a, b):
     return Vec3(a.e[1] * b.e[2] - a.e[2] * b.e[1],
