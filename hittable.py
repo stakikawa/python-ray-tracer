@@ -16,7 +16,7 @@ class HitRecord:
         self.front_face = rec.front_face
 
     def set_face_normal(self, r, outward_normal):
-        self.front_face = dot(r.direction(), outward_normal)
+        self.front_face = dot(r.direction, outward_normal)
         self.normal = outward_normal if self.front_face else -outward_normal
 
 
