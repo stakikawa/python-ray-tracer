@@ -1,5 +1,6 @@
 from color import Color
 from color import write_color
+from hittable import HitRecord
 from hittable_list import HittableList
 from ray import Ray
 from point3 import Point3
@@ -7,26 +8,14 @@ from sphere import Sphere
 from vec3 import Vec3
 from vec3 import unit_vector
 from vec3 import dot
+from utility import INFINITY
 import math
 
 
-def hit_sphere(center, radius, r):
-    oc = r.origin - center
-    a = r.direction.length_squared()
-    half_b = dot(oc, r.direction)
-    c = oc.length_squared() - radius * radius
-    discriminant = half_b * half_b - a * c
-    if discriminant < 0:
-        return -1.0
-    else:
-        return (-half_b - math.sqrt(discriminant)) / a
-
-
-def ray_color(r):
-    t = hit_sphere(Point3(0, 0, -1), 0.5, r)
-    if t > 0.0:
-        n = unit_vector(r.at(t) - Vec3(0, 0, -1))
-        return 0.5 * Color(n.x() + 1, n.y() + 1, n.z() + 1)
+def ray_color(r, world):
+    rec = HitRecord()
+    if world.hit(r, 0, INFINITY, rec):
+        return 0.5 * (rec.normal + Color(1, 1, 1))
     unit_direction = unit_vector(r.direction)
     t = 0.5 * (unit_direction.y() + 1.0)
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0)
