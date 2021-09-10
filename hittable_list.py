@@ -25,6 +25,6 @@ class HittableList(Hittable):
             if object.hit(r, t_min, closest_so_far, temp_rec):
                 hit_anything = True
                 closest_so_far = temp_rec.t
-                rec = temp_rec
+                rec.copy(temp_rec)
 
         return hit_anything
