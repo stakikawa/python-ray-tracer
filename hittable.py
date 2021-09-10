@@ -1,13 +1,17 @@
-from point3 import Point3
-from vec3 import Vec3
-from dataclasses import dataclass
+from vec3 import dot
 
 
-@dataclass
 class HitRecord:
-    p: Point3
-    normal: Vec3
-    t: float
+
+    def __init__(self, p, normal, t):
+        self.p = p
+        self.normal = normal
+        self.t = t
+        self.front_face = False
+
+    def set_face_normal(self, r, outward_normal):
+        self.front_face = dot(r.direction(), outward_normal)
+        self.normal = outward_normal if self.front_face else -outward_normal
 
 
 class Hittable:
