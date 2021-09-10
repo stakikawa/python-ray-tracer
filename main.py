@@ -1,7 +1,9 @@
 from color import Color
 from color import write_color
+from hittable_list import HittableList
 from ray import Ray
 from point3 import Point3
+from sphere import Sphere
 from vec3 import Vec3
 from vec3 import unit_vector
 from vec3 import dot
@@ -35,6 +37,11 @@ def main():
     aspect_ratio = 16.0 / 9.0
     image_width = 400
     image_height = math.floor(image_width / aspect_ratio)
+
+    # World
+    world = HittableList()
+    world.add(Sphere(Point3(0, 0, -1), 0.5))
+    world.add(Sphere(Point3(0, -100.5, -1), 100))
 
     # Camera
     viewport_height = 2.0
