@@ -50,7 +50,7 @@ def main():
             u = float(i) / (image_width - 1)
             v = float(j) / (image_height - 1)
             r = Ray(origin, lower_left_corner + u * horizontal + v * vertical - origin)
-            pixel_color = ray_color(r)
+            pixel_color = ray_color(r, world)
             write_color(pixel_color)
 
 
