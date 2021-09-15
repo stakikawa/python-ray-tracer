@@ -1,12 +1,22 @@
 from vec3 import Vec3
+from utility import clamp
 
 
 class Color(Vec3):
     pass
 
 
-def write_color(pixel_color):
-    ir = int(255.999 * pixel_color.x())
-    ig = int(255.999 * pixel_color.y())
-    ib = int(255.999 * pixel_color.z())
-    print(ir, ' ', ig, ' ', ib, '\n')
+def write_color(pixel_color, samples_per_pixel):
+    r = pixel_color.x()
+    g = pixel_color.y()
+    b = pixel_color.z()
+
+    scale = 1.0 / samples_per_pixel
+    r *= scale
+    g *= scale
+    b *= scale
+
+    r = 256 * clamp(r, 0.0, 0.999)
+    g = 256 * clamp(g, 0.0, 0.999)
+    b = 256 * clamp(b, 0.0, 0.999)
+    print(r, ' ', g, ' ', b, '\n')
