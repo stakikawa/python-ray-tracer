@@ -22,3 +22,4 @@ def clamp(x, min, max):
         return min
     if x > max:
         return max
+    return x
