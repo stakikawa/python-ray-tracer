@@ -15,3 +15,10 @@ def random_double(min=None, max=None):
         return random.random()
     else:
         return min + (max - min) * random.random()
+
+
+def clamp(x, min, max):
+    if x < min:
+        return min
+    if x > max:
+        return max
