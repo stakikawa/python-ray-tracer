@@ -8,16 +8,20 @@ from sphere import Sphere
 from vec3 import Vec3
 from vec3 import unit_vector
 from vec3 import dot
+from vec3 import random_in_unit_sphere
 from camera import Camera
 from utility import INFINITY
 from utility import random_double
 import math
 
 
-def ray_color(r, world):
+def ray_color(r, world, depth):
     rec = HitRecord()
+    if depth <= 0:
+        return Color(0, 0, 0)
     if world.hit(r, 0, INFINITY, rec):
-        return 0.5 * (rec.normal + Color(1, 1, 1))
+        target = rec.p + rec.normal + random_in_unit_sphere()
+        return 0.5 * ray_color(Ray(rec.p, target - rec.p), world, depth - 1)
     unit_direction = unit_vector(r.direction)
     t = 0.5 * (unit_direction.y() + 1.0)
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0)
@@ -29,6 +33,7 @@ def main():
     image_width = 400
     image_height = math.floor(image_width / aspect_ratio)
     samples_per_pixel = 100
+    max_depth = 50
 
     # World
     world = HittableList()
@@ -50,13 +55,13 @@ def main():
                     u = float(i + random_double()) / (image_width - 1)
                     v = float(j + random_double()) / (image_height - 1)
                     r = cam.get_ray(u, v)
-                    pixel_color += ray_color(r, world)
+                    pixel_color += ray_color(r, world, max_depth)
                 write_color(pixel_color, samples_per_pixel)
             else:
                 u = float(i) / (image_width - 1)
                 v = float(j) / (image_height - 1)
                 r = cam.get_ray(u, v)
-                pixel_color += ray_color(r, world)
+                pixel_color += ray_color(r, world, max_depth)
                 write_color(pixel_color)
 
 
