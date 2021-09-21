@@ -19,7 +19,7 @@ def ray_color(r, world, depth):
     rec = HitRecord()
     if depth <= 0:
         return Color(0, 0, 0)
-    if world.hit(r, 0, INFINITY, rec):
+    if world.hit(r, 0.001, INFINITY, rec):
         target = rec.p + rec.normal + random_in_unit_sphere()
         return 0.5 * ray_color(Ray(rec.p, target - rec.p), world, depth - 1)
     unit_direction = unit_vector(r.direction)
