@@ -39,17 +39,25 @@ def main():
     cam = Camera()
 
     # Render
+    anti_alias = True
     print("P3\n", image_width, ' ', image_height, "\n255\n")
 
     for j in range(image_height - 1, -1, -1):
         for i in range(image_width):
             pixel_color = Color(0, 0, 0)
-            for s in range(samples_per_pixel):
-                u = float(i + random_double()) / (image_width - 1)
-                v = float(j + random_double()) / (image_height - 1)
+            if anti_alias:
+                for s in range(samples_per_pixel):
+                    u = float(i + random_double()) / (image_width - 1)
+                    v = float(j + random_double()) / (image_height - 1)
+                    r = cam.get_ray(u, v)
+                    pixel_color += ray_color(r, world)
+                write_color(pixel_color, samples_per_pixel)
+            else:
+                u = float(i) / (image_width - 1)
+                v = float(j) / (image_height - 1)
                 r = cam.get_ray(u, v)
                 pixel_color += ray_color(r, world)
-            write_color(pixel_color, samples_per_pixel)
+                write_color(pixel_color)
 
 
 main()

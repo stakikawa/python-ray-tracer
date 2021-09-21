@@ -6,7 +6,7 @@ class Color(Vec3):
     pass
 
 
-def write_color(pixel_color, samples_per_pixel):
+def write_color(pixel_color, samples_per_pixel=1):
     r = pixel_color.x()
     g = pixel_color.y()
     b = pixel_color.z()
