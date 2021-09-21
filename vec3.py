@@ -137,6 +137,10 @@ def random_in_unit_sphere():
         return p
 
 
+def random_unit_vector():
+    return unit_vector(random_in_unit_sphere())
+
+
 def unit_vector(v):
     return v / v.length()
 

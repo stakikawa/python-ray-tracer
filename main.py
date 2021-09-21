@@ -9,6 +9,7 @@ from vec3 import Vec3
 from vec3 import unit_vector
 from vec3 import dot
 from vec3 import random_in_unit_sphere
+from vec3 import random_unit_vector
 from camera import Camera
 from utility import INFINITY
 from utility import random_double
@@ -20,7 +21,7 @@ def ray_color(r, world, depth):
     if depth <= 0:
         return Color(0, 0, 0)
     if world.hit(r, 0.001, INFINITY, rec):
-        target = rec.p + rec.normal + random_in_unit_sphere()
+        target = rec.p + rec.normal + random_unit_vector()
         return 0.5 * ray_color(Ray(rec.p, target - rec.p), world, depth - 1)
     unit_direction = unit_vector(r.direction)
     t = 0.5 * (unit_direction.y() + 1.0)
