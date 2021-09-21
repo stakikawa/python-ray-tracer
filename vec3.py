@@ -1,4 +1,5 @@
 import math
+from utility import random_double
 
 
 class Vec3:
@@ -118,6 +119,22 @@ class Vec3:
 
     def length(self):
         return math.sqrt(self.length_squared())
+
+
+def random_vec():
+    return Vec3(random_double(), random_double(), random_double())
+
+
+def random_vec_mm(min, max):
+    return Vec3(random_double(min, max), random_double(min, max), random_double(min, max))
+
+
+def random_in_unit_sphere():
+    while True:
+        p = random_vec_mm(-1, 1)
+        if p.length_squared() >= 1:
+            continue
+        return p
 
 
 def unit_vector(v):
