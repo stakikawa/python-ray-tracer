@@ -2,6 +2,7 @@ from vec3 import Vec3
 from utility import clamp
 import math
 
+
 class Color(Vec3):
     pass
 
