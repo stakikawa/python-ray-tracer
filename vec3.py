@@ -149,6 +149,10 @@ def unit_vector(v):
     return v / v.length()
 
 
+def reflect(v, n):
+    return v - 2 * dot(v, n) * n
+
+
 def dot(a, b):
     return a.e[0] * b.e[0] + a.e[1] * b.e[1] + a.e[2] * b.e[2]
 
