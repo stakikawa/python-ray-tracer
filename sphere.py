@@ -5,9 +5,10 @@ import math
 
 class Sphere(Hittable):
 
-    def __init__(self, center, radius):
+    def __init__(self, center, radius, material):
         self.center = center
         self.radius = radius
+        self.material = material
 
     def hit(self, r, t_min, t_max, rec):
         oc = r.origin - self.center
@@ -31,5 +32,6 @@ class Sphere(Hittable):
         rec.p = r.at(rec.t)
         outward_normal = (rec.p - self.center) / self.radius
         rec.set_face_normal(r, outward_normal)
+        rec.material = self.material
 
         return True

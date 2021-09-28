@@ -3,9 +3,10 @@ from vec3 import dot
 
 class HitRecord:
 
-    def __init__(self, p=None, normal=None, t=None):
+    def __init__(self, p=None, normal=None, material=None, t=None):
         self.p = p
         self.normal = normal
+        self.material = material
         self.t = t
         self.front_face = False
 
