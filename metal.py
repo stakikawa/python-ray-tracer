@@ -16,4 +16,4 @@ class Metal(Material):
         reflected = reflect(unit_vector(r_in.direction), rec.normal)
         scattered = Ray(rec.p, reflected + self.fuzz*random_in_unit_sphere())
         attenuation = self.albedo
-        return dot(scattered.direction(), rec.normal) > 0, attenuation, scattered
+        return dot(scattered.direction, rec.normal) > 0, attenuation, scattered
