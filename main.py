@@ -21,8 +21,10 @@ def ray_color(r, world, depth):
     if depth <= 0:
         return Color(0, 0, 0)
     if world.hit(r, 0.001, INFINITY, rec):
-        target = rec.p + rec.normal + random_unit_vector()
-        return 0.5 * ray_color(Ray(rec.p, target - rec.p), world, depth - 1)
+        valid, scattered, attenuation = rec.material.scatter(r, rec)
+        if valid:
+            return attenuation * ray_color(scattered, world, depth - 1)
+        return Color(0, 0, 0)
     unit_direction = unit_vector(r.direction)
     t = 0.5 * (unit_direction.y() + 1.0)
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0)
