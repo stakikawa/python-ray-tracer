@@ -23,7 +23,7 @@ def ray_color(r, world, depth):
     if depth <= 0:
         return Color(0, 0, 0)
     if world.hit(r, 0.001, INFINITY, rec):
-        valid, scattered, attenuation = rec.material.scatter(r, rec)
+        valid, attenuation, scattered = rec.material.scatter(r, rec)
         if valid:
             return attenuation * ray_color(scattered, world, depth - 1)
         return Color(0, 0, 0)
