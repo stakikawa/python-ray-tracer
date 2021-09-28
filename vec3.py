@@ -114,6 +114,10 @@ class Vec3:
         z = -self.e[2]
         return Vec3(x, y, z)
 
+    def near_zero(self):
+        s = 1e-8
+        return (abs(self.e[0]) < s) and (abs(self.e[1]) < s) and (abs(self.e[2]) < s)
+
     def length_squared(self):
         return self.e[0] * self.e[0] + self.e[1] * self.e[1] + self.e[2] * self.e[2]
 
