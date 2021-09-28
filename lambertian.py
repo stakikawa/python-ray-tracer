@@ -10,6 +10,11 @@ class Lambertian(Material):
 
     def scatter(self, r_in, rec):
         scatter_direction = rec.normal + random_unit_vector()
+
+        # Catch degenerate scatter direction
+        if scatter_direction.near_zero():
+            scatter_direction = rec.normal
+
         scattered = Ray(rec.p, scatter_direction)
         attenuation = self.albedo
         return True, attenuation, scattered
