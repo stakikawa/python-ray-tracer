@@ -13,6 +13,7 @@ class HitRecord:
     def copy(self, rec):
         self.p = rec.p
         self.normal = rec.normal
+        self.material = rec.material
         self.t = rec.t
         self.front_face = rec.front_face
 
