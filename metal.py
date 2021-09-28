@@ -8,7 +8,7 @@ from vec3 import dot
 
 class Metal(Material):
 
-    def __init__(self, albedo, fuzz):
+    def __init__(self, albedo, fuzz=0):
         self.albedo = albedo
         self.fuzz = fuzz
 
