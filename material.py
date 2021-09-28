@@ -1,4 +1,4 @@
 
 class Material:
-    def scatter(self, r_in, rec, attenuation, scattered):
+    def scatter(self, r_in, rec):
         raise NotImplementedError()
