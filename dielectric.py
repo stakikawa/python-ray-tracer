@@ -2,7 +2,11 @@ from material import Material
 from color import Color
 from vec3 import unit_vector
 from vec3 import refract
+from vec3 import reflect
+from vec3 import Vec3
+from vec3 import dot
 from ray import Ray
+import math
 
 
 class Dielectric(Material):
@@ -15,8 +19,16 @@ class Dielectric(Material):
         refraction_ratio = (1.0 / self.ir) if rec.front_face else self.ir
 
         unit_direction = unit_vector(r_in.direction)
-        refracted = refract(unit_direction, rec.normal, refraction_ratio)
 
-        scattered = Ray(rec.p, refracted)
+        cos_theta = min(dot(-unit_direction, rec.normal), 1.0)
+        sin_theta = math.sqrt(1.0 - cos_theta * cos_theta)
 
+        cannot_refract = refraction_ratio * sin_theta > 1.0
+
+        if cannot_refract:
+            direction = reflect(unit_direction, rec.normal)
+        else:
+            direction = refract(unit_direction, rec.normal, refraction_ratio)
+
+        scattered = Ray(rec.p, direction)
         return True, attenuation, scattered
