@@ -1,6 +1,6 @@
 from PyTorch.hittable import Hittable
-from PyTorch.vec3 import dot
-import math
+from PyTorch.utility import dot, length_squared
+from math import sqrt
 
 
 class Sphere(Hittable):
@@ -12,14 +12,14 @@ class Sphere(Hittable):
 
     def hit(self, r, t_min, t_max, rec):
         oc = r.origin - self.center
-        a = r.direction.length_squared()
+        a = length_squared(r.direction)
         half_b = dot(oc, r.direction)
-        c = oc.length_squared() - self.radius * self.radius
+        c = length_squared(oc) - self.radius * self.radius
 
         discriminant = half_b * half_b - a * c
         if discriminant < 0:
             return False
-        sqrt_d = math.sqrt(discriminant)
+        sqrt_d = sqrt(discriminant)
 
         # Find the nearest root that lies in acceptable t range
         root = (-half_b - sqrt_d) / a
