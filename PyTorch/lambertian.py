@@ -1,6 +1,6 @@
-from Original.material import Material
-from Original.ray import Ray
-from Original.vec3 import random_unit_vector
+from PyTorch.material import Material
+from PyTorch.ray import Ray
+from PyTorch.utility import random_unit_vector, near_zero
 
 
 class Lambertian(Material):
@@ -12,7 +12,7 @@ class Lambertian(Material):
         scatter_direction = rec.normal + random_unit_vector()
 
         # Catch degenerate scatter direction
-        if scatter_direction.near_zero():
+        if near_zero(scatter_direction):
             scatter_direction = rec.normal
 
         scattered = Ray(rec.p, scatter_direction)
