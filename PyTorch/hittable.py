@@ -1,4 +1,4 @@
-from Original.vec3 import dot
+from PyTorch.utility import dot
 
 
 class HitRecord:
