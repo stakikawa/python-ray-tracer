@@ -1,11 +1,11 @@
-from material import Material
-from color import Color
-from vec3 import unit_vector
-from vec3 import refract
-from vec3 import reflect
-from vec3 import random_double
-from vec3 import dot
-from ray import Ray
+from Original.material import Material
+from Original.color import Color
+from Original.vec3 import unit_vector
+from Original.vec3 import refract
+from Original.vec3 import reflect
+from Original.vec3 import random_double
+from Original.vec3 import dot
+from Original.ray import Ray
 import math
 
 

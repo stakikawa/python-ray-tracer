@@ -1,9 +1,9 @@
-from material import Material
-from ray import Ray
-from vec3 import reflect
-from vec3 import unit_vector
-from vec3 import random_in_unit_sphere
-from vec3 import dot
+from Original.material import Material
+from Original.ray import Ray
+from Original.vec3 import reflect
+from Original.vec3 import unit_vector
+from Original.vec3 import random_in_unit_sphere
+from Original.vec3 import dot
 
 
 class Metal(Material):

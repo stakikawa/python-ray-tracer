@@ -1,5 +1,5 @@
-from hittable import Hittable
-from vec3 import dot
+from Original.hittable import Hittable
+from Original.vec3 import dot
 import math
 
 

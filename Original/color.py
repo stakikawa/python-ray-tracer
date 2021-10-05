@@ -1,5 +1,5 @@
-from vec3 import Vec3
-from utility import clamp
+from Original.vec3 import Vec3
+from Original.utility import clamp
 import math
 
 

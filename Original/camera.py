@@ -1,8 +1,8 @@
-from vec3 import unit_vector
-from vec3 import cross
-from vec3 import random_in_unit_disk
-from ray import Ray
-from utility import degrees_to_radians
+from Original.vec3 import unit_vector
+from Original.vec3 import cross
+from Original.vec3 import random_in_unit_disk
+from Original.ray import Ray
+from Original.utility import degrees_to_radians
 import math
 
 

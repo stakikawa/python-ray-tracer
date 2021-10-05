@@ -1,19 +1,19 @@
-from color import Color
-from color import write_color
-from hittable import HitRecord
-from hittable_list import HittableList
-from point3 import Point3
-from sphere import Sphere
-from vec3 import Vec3
-from vec3 import unit_vector
-from vec3 import random_vec
-from vec3 import random_vec_mm
-from lambertian import Lambertian
-from dielectric import Dielectric
-from metal import Metal
-from camera import Camera
-from utility import INFINITY
-from utility import random_double
+from Original.color import Color
+from Original.color import write_color
+from Original.hittable import HitRecord
+from Original.hittable_list import HittableList
+from Original.point3 import Point3
+from Original.sphere import Sphere
+from Original.vec3 import Vec3
+from Original.vec3 import unit_vector
+from Original.vec3 import random_vec
+from Original.vec3 import random_vec_mm
+from Original.lambertian import Lambertian
+from Original.dielectric import Dielectric
+from Original.metal import Metal
+from Original.camera import Camera
+from Original.utility import INFINITY
+from Original.utility import random_double
 import math
 
 

@@ -1,6 +1,6 @@
-from material import Material
-from ray import Ray
-from vec3 import random_unit_vector
+from Original.material import Material
+from Original.ray import Ray
+from Original.vec3 import random_unit_vector
 
 
 class Lambertian(Material):

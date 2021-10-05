@@ -1,5 +1,5 @@
-from hittable import Hittable
-from hittable import HitRecord
+from Original.hittable import Hittable
+from Original.hittable import HitRecord
 
 
 class HittableList(Hittable):

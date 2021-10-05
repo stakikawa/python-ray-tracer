@@ -1,4 +1,4 @@
-from vec3 import dot
+from Original.vec3 import dot
 
 
 class HitRecord:
