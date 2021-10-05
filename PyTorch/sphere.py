@@ -1,5 +1,5 @@
-from Original.hittable import Hittable
-from Original.vec3 import dot
+from PyTorch.hittable import Hittable
+from PyTorch.vec3 import dot
 import math
 
 
