@@ -2,16 +2,12 @@ from color import Color
 from color import write_color
 from hittable import HitRecord
 from hittable_list import HittableList
-from ray import Ray
 from point3 import Point3
 from sphere import Sphere
 from vec3 import Vec3
 from vec3 import unit_vector
 from vec3 import random_vec
 from vec3 import random_vec_mm
-from vec3 import dot
-from vec3 import random_in_unit_sphere
-from vec3 import random_unit_vector
 from lambertian import Lambertian
 from dielectric import Dielectric
 from metal import Metal

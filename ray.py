@@ -1,5 +1,3 @@
-from vec3 import Vec3
-from point3 import Point3
 
 
 class Ray:
