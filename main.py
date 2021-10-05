@@ -7,6 +7,8 @@ from point3 import Point3
 from sphere import Sphere
 from vec3 import Vec3
 from vec3 import unit_vector
+from vec3 import random_vec
+from vec3 import random_vec_mm
 from vec3 import dot
 from vec3 import random_in_unit_sphere
 from vec3 import random_unit_vector
@@ -17,6 +19,47 @@ from camera import Camera
 from utility import INFINITY
 from utility import random_double
 import math
+
+
+def random_scene():
+    world = HittableList()
+
+    ground_material = Lambertian(Color(0.5, 0.5, 0.5))
+    world.add(Sphere(Point3(0, -1000, 0), 1000, ground_material))
+
+    for a in range(-11, 11):
+        for b in range(-11, 11):
+            choose_mat = random_double()
+            center = Point3(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double())
+
+            if (center - Point3(4, 0.2, 0)).length() > 0.9:
+
+                if choose_mat < 0.8:
+                    # diffuse
+                    albedo = random_vec() * random_vec()
+                    sphere_material = Lambertian(albedo)
+                    world.add(Sphere(center, 0.2, sphere_material))
+                elif choose_mat < 0.95:
+                    # metal
+                    albedo = random_vec_mm(0.5, 1)
+                    fuzz = random_double(0, 0.5)
+                    sphere_material = Metal(albedo, fuzz)
+                    world.add(Sphere(center, 0.2, sphere_material))
+                else:
+                    # glass
+                    sphere_material = Dielectric(1.5)
+                    world.add(Sphere(center, 0.2, sphere_material))
+
+    material1 = Dielectric(1.5)
+    world.add(Sphere(Point3(0, 1, 0), 1.0, material1))
+
+    material2 = Lambertian(Color(0.4, 0.2, 0.1))
+    world.add(Sphere(Point3(-4, 1, 0), 1.0, material2))
+
+    material3 = Metal(Color(0.7, 0.6, 0.5))
+    world.add(Sphere(Point3(4, 1, 0), 1.0, material3))
+
+    return world
 
 
 def ray_color(r, world, depth):
@@ -35,32 +78,21 @@ def ray_color(r, world, depth):
 
 def main():
     # Image
-    aspect_ratio = 16.0 / 9.0
-    image_width = 400
+    aspect_ratio = 3.0 / 2.0
+    image_width = 1200
     image_height = math.floor(image_width / aspect_ratio)
-    samples_per_pixel = 100
+    samples_per_pixel = 500
     max_depth = 50
 
     # World
-    world = HittableList()
-
-    material_ground = Lambertian(Color(0.8, 0.8, 0.0))
-    material_center = Lambertian(Color(0.7, 0.3, 0.3))
-    material_left = Dielectric(1.5)
-    material_right = Metal(Color(0.8, 0.6, 0.2), 1.0)
-
-    world.add(Sphere(Point3(0.0, -100.5, -1.0), 100.0, material_ground))
-    world.add(Sphere(Point3(0.0, 0.0, -1.0), 0.5, material_center))
-    world.add(Sphere(Point3(-1.0, 0.0, -1.0), 0.5, material_left))
-    world.add(Sphere(Point3(-1.0, 0.0, -1.0), -0.4, material_left))
-    world.add(Sphere(Point3(1.0, 0.0, -1.0), 0.5, material_right))
+    world = random_scene()
 
     # Camera
-    lookfrom = Point3(3, 3, 2)
-    lookat = Point3(0, 0, -1)
+    lookfrom = Point3(13, 2, 3)
+    lookat = Point3(0, 0, 0)
     vup = Vec3(0, 1, 0)
-    dist_to_focus = (lookfrom - lookat).length()
-    aperture = 2.0
+    dist_to_focus = 10.0
+    aperture = 0.1
     fov = 20.0
 
     cam = Camera(lookfrom, lookat, vup, fov, aspect_ratio, aperture, dist_to_focus)
