@@ -141,6 +141,14 @@ def random_in_unit_sphere():
         return p
 
 
+def random_in_unit_disk():
+    while True:
+        p = Vec3(random_double(-1, 1), random_double(-1, 1), 0)
+        if p.length_squared() >= 1:
+            continue
+        return p
+
+
 def random_unit_vector():
     return unit_vector(random_in_unit_sphere())
 
