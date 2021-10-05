@@ -1,12 +1,8 @@
-from Original.material import Material
-from Original.color import Color
-from Original.vec3 import unit_vector
-from Original.vec3 import refract
-from Original.vec3 import reflect
-from Original.vec3 import random_double
-from Original.vec3 import dot
-from Original.ray import Ray
+from PyTorch.material import Material
+from PyTorch.utility import unit_vector, refract, reflect, random_double, dot
+from PyTorch.ray import Ray
 import math
+import torch
 
 
 def reflectance(cosine, ref_idx):
@@ -22,7 +18,7 @@ class Dielectric(Material):
         self.ir = index_of_refraction
 
     def scatter(self, r_in, rec):
-        attenuation = Color(1.0, 1.0, 1.0)
+        attenuation = torch.tensor([1.0, 1.0, 1.0])
         refraction_ratio = (1.0 / self.ir) if rec.front_face else self.ir
 
         unit_direction = unit_vector(r_in.direction)
