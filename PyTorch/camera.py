@@ -1,8 +1,8 @@
-from Original.vec3 import unit_vector
-from Original.vec3 import cross
-from Original.vec3 import random_in_unit_disk
-from Original.ray import Ray
-from Original.utility import degrees_to_radians
+from PyTorch.utility import unit_vector
+from PyTorch.utility import cross
+from PyTorch.utility import random_in_unit_disk
+from PyTorch.ray import Ray
+from PyTorch.utility import degrees_to_radians
 import math
 
 
