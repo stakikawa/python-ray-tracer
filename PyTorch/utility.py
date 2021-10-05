@@ -80,3 +80,11 @@ def cross(a, b):
 def near_zero(v):
     s = 1e-8
     return (abs(v[0]) < s) and (abs(v[1]) < s) and (abs(v[2]) < s)
+
+
+def length_squared(v):
+    return dot(v, v)
+
+
+def length(v):
+    return torch.norm(v)
