@@ -1,5 +1,5 @@
-from Original.hittable import Hittable
-from Original.hittable import HitRecord
+from PyTorch.hittable import Hittable
+from PyTorch.hittable import HitRecord
 
 
 class HittableList(Hittable):
