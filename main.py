@@ -56,7 +56,7 @@ def main():
     world.add(Sphere(Point3(1.0, 0.0, -1.0), 0.5, material_right))
 
     # Camera
-    cam = Camera(90.0, aspect_ratio)
+    cam = Camera(Point3(-2, 2, 1), Point3(0, 0, -1), Vec3(0, 1, 0), 90.0, aspect_ratio)
 
     # Render
     anti_alias = True
