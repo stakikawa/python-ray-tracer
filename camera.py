@@ -1,13 +1,16 @@
 from point3 import Point3
 from vec3 import Vec3
 from ray import Ray
+from utility import degrees_to_radians
+import math
 
 
 class Camera:
 
-    def __init__(self):
-        aspect_ratio = 16.0 / 9.0
-        viewport_height = 2.0
+    def __init__(self, vfov, aspect_ratio):
+        theta = degrees_to_radians(vfov)
+        h = math.tan(theta / 2)
+        viewport_height = 2.0 * h
         viewport_width = aspect_ratio * viewport_height
         focal_length = 1.0
 
