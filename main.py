@@ -56,7 +56,14 @@ def main():
     world.add(Sphere(Point3(1.0, 0.0, -1.0), 0.5, material_right))
 
     # Camera
-    cam = Camera(Point3(-2, 2, 1), Point3(0, 0, -1), Vec3(0, 1, 0), 90.0, aspect_ratio)
+    lookfrom = Point3(3, 3, 2)
+    lookat = Point3(0, 0, -1)
+    vup = Vec3(0, 1, 0)
+    dist_to_focus = (lookfrom - lookat).length()
+    aperture = 2.0
+    fov = 20.0
+
+    cam = Camera(lookfrom, lookat, vup, fov, aspect_ratio, aperture, dist_to_focus)
 
     # Render
     anti_alias = True
