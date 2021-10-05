@@ -1,9 +1,6 @@
-from Original.material import Material
-from Original.ray import Ray
-from Original.vec3 import reflect
-from Original.vec3 import unit_vector
-from Original.vec3 import random_in_unit_sphere
-from Original.vec3 import dot
+from PyTorch.material import Material
+from PyTorch.ray import Ray
+from PyTorch.utility import reflect, unit_vector, random_in_unit_sphere, dot
 
 
 class Metal(Material):
