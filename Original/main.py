@@ -59,17 +59,23 @@ def random_scene():
 
 
 def ray_color(r, world, depth):
-    rec = HitRecord()
-    if depth <= 0:
-        return Color(0, 0, 0)
-    if world.hit(r, 0.001, INFINITY, rec):
-        valid, attenuation, scattered = rec.material.scatter(r, rec)
-        if valid:
-            return attenuation * ray_color(scattered, world, depth - 1)
-        return Color(0, 0, 0)
-    unit_direction = unit_vector(r.direction)
-    t = 0.5 * (unit_direction.y() + 1.0)
-    return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0)
+    cur_ray = r
+    cur_attenuation = Color(1.0, 1.0, 1.0)
+    for i in range(depth):
+        rec = HitRecord()
+        if world.hit(cur_ray, 0.001, INFINITY, rec):
+            valid, attenuation, scattered = rec.material.scatter(r, rec)
+            if valid:
+                cur_attenuation *= attenuation
+                cur_ray = scattered
+            else:
+                return Color(0, 0, 0)
+        else:
+            unit_direction = unit_vector(cur_ray.direction)
+            t = 0.5 * (unit_direction.y() + 1.0)
+            c = (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0)
+            return cur_attenuation * c
+    return Color(0, 0, 0)
 
 
 def main():
@@ -114,5 +120,5 @@ def main():
                 pixel_color += ray_color(r, world, max_depth)
                 write_color(pixel_color)
 
-
-main()
+#
+# main()
