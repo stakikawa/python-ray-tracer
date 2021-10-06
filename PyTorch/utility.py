@@ -90,16 +90,10 @@ def length(v):
     return torch.norm(v)
 
 
-def write_color(pixel_color, samples_per_pixel=1):
+def write_color(pixel_color):
     r = pixel_color[0]
     g = pixel_color[1]
     b = pixel_color[2]
-
-    # Divide color by number of samples and gamma correct with gamma = 2
-    scale = 1.0 / samples_per_pixel
-    r = sqrt(r * scale)
-    g = sqrt(g * scale)
-    b = sqrt(b * scale)
 
     r = int(256 * clamp(r, 0.0, 0.999))
     g = int(256 * clamp(g, 0.0, 0.999))
